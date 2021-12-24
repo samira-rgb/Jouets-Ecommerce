@@ -1,0 +1,63 @@
+{# templates/front/page/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Home
+{% endblock %}
+
+{% block content %}
+
+	{% for message in app.flashes('success') %}
+		{{message}}
+	{% endfor %}
+	
+		<p>Page d'accueil front</p>
+		{# <p>{{ app.user.lastLoginAt|date() }}</p> #}
+
+
+
+		 
+
+	
+
+	{% block body %}
+
+	<div class="row my-5 justify-content-around">
+		{% for article in articles %}
+			<div class="col-md-4">
+				<div style="width: 15rem" class="card mb-5">
+
+					<img src="{{ asset('photos/') }}{{ article.photo }}" height="200" alt="">
+
+					<div class="card-body p-1 text-center">
+						<h5 class="card-title">{{ article.nom }}</h5>
+					</div>
+					<div class="card-body p-0">
+						<p class="card-text">{{ article.description }}</p>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">{{ article.prix }}
+							€</li>
+						 {# <a href="{{ path('addcart', {id:article.id,param:'app_index'}) }}">  #}
+						 <button type="button" class="btn btn-primary btn-sm w-100">
+							<i class="fas fa-shopping-cart fa-lg"></i>
+						</button>
+					</a>
+				</ul>
+			</div>
+
+		</div>
+	{% endfor %}
+</div>
+
+
+
+
+
+
+	
+
+{% endblock %}
+
+
+
+{% endblock %}

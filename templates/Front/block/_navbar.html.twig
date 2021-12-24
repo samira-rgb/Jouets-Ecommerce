@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_index')}}">Votre Jouet</a>
+		<img rel="icon" type="image/svg" href="{{ asset('build/images/fa-brands-400.2f517e09.svg')}}" />
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+           
+		    <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_index')}}">Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Nous contacter
+                    </a>
+                </li>
+
+
+            </ul>
+            <div class="nav-item ">
+                <form method="get" action=" # "   class="d-flex">
+                    <input name="search" class="form-control me-sm-2" type="text" id="searchbar" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search fa-lg"></i></button>
+                </form>
+            </div>
+            {% if not app.user %}
+                <div>
+                    <a class="nav-link p-0" href="{{ path('app_login')}}"><span class="badge bg-primary p-2">Se connecter</span></a>
+                    <a class="nav-link" href="{{ path('app_register')}}"><span class="p-2 badge bg-success ">S'inscrire</span></a>
+                </div>
+            {% else %}
+
+                <div class=" dropdown dropstart me-5 ">
+                    <a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-2x"></i></a>
+                    <div class="dropdown-menu dropstart ">
+                        <a class="dropdown-item pe-5" href="#">Profil</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="dropdown-item pe-5" href="{{ path('back_home')}}">Accès BackOffice</a>
+                        {% endif %}
+                        <a class="dropdown-item pe-5" href="#">Mes commandes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item pe-5" href="{{ path('app_logout')}}">Déconnexion</a>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
+
+<div class="row justify-content-center mt-4">
+    <div class="col text-center"><h1>{% block titre %}{% endblock %}</h1></div>
+</div>
+
+
